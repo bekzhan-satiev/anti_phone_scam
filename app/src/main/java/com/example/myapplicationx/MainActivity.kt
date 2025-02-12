@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,49 +39,40 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ArticleScreen(modifier = Modifier.fillMaxSize())
+                    TaskManagerScreen()
                 }
             }
         }
     }
 }
 
-
 @Composable
-fun ArticleScreen(
-    modifier: Modifier = Modifier
+fun TaskManagerScreen(
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_compose_background),
-            contentDescription = null,
-            modifier = Modifier.fillMaxWidth()
+            painter = painterResource(id = R.drawable.ic_task_completed),
+            contentDescription = "Done icon"
         )
         Text(
-            text = stringResource(id = R.string.title),
-            fontSize = 24.sp,
-            modifier = Modifier.padding(16.dp)
+            text = stringResource(id = R.string.tasks_completed_text),
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(top = 24.dp, bottom = 8.dp)
         )
-        Text(
-            text = stringResource(id = R.string.firstParagraph),
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-            textAlign = TextAlign.Justify
-        )
-        Text(
-            text = stringResource(id = R.string.secondParagraph),
-            modifier = Modifier.padding(16.dp),
-            textAlign = TextAlign.Justify
-        )
+        Text(text = stringResource(id = R.string.nice_work), fontSize = 16.sp)
     }
 }
 
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
+@Preview(showBackground = true,
+    showSystemUi = true)
 @Composable
-fun ArticleScreenPreview() {
+fun TaskManagerScreenPreview() {
     MyApplicationxTheme {
-        ArticleScreen(modifier = Modifier.fillMaxSize())
+        TaskManagerScreen()
     }
 }
