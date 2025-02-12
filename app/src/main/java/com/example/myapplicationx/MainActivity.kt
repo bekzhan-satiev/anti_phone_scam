@@ -38,71 +38,49 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingImage(
-                        message = stringResource(R.string.happy_birthday_text),
-                        from = stringResource(R.string.signature_text)
-                    )
+                    ArticleScreen(modifier = Modifier.fillMaxSize())
                 }
             }
         }
     }
 }
 
-@Composable
-fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = message,
-            fontSize = 100.sp,
-            lineHeight = 116.sp,
-            textAlign = TextAlign.Center
-        )
-        Text(
-            text = from,
-            fontSize = 29.sp,
-            modifier = Modifier
-                .padding(16.dp)
-                .align(alignment = Alignment.CenterHorizontally)
-        )
-    }
-}
 
 @Composable
-fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
-    val image = painterResource(R.drawable.androidparty)
-    Box(modifier) {
+fun ArticleScreen(
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
         Image(
-            painter = image,
+            painter = painterResource(id = R.drawable.bg_compose_background),
             contentDescription = null,
-            contentScale = ContentScale.Crop,
-            alpha = 0.5F
+            modifier = Modifier.fillMaxWidth()
         )
-        GreetingText(
-            message = message,
-            from = from,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
+        Text(
+            text = stringResource(id = R.string.title),
+            fontSize = 24.sp,
+            modifier = Modifier.padding(16.dp)
+        )
+        Text(
+            text = stringResource(id = R.string.firstParagraph),
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            textAlign = TextAlign.Justify
+        )
+        Text(
+            text = stringResource(id = R.string.secondParagraph),
+            modifier = Modifier.padding(16.dp),
+            textAlign = TextAlign.Justify
         )
     }
 }
 
 @Preview(
     showBackground = true,
-    showSystemUi = true,
-    name = "My preview"
+    showSystemUi = true
 )
 @Composable
-fun BirthdayCardPreview() {
+fun ArticleScreenPreview() {
     MyApplicationxTheme {
-        GreetingImage(
-            message = stringResource(R.string.happy_birthday_text), from = stringResource(
-                id = R.string.signature_text
-            )
-        )
+        ArticleScreen(modifier = Modifier.fillMaxSize())
     }
-
 }
