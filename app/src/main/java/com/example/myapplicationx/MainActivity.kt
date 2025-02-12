@@ -5,9 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -39,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TaskManagerScreen()
+
                 }
             }
         }
@@ -47,32 +49,47 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun TaskManagerScreen(
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_task_completed),
-            contentDescription = "Done icon"
-        )
-        Text(
-            text = stringResource(id = R.string.tasks_completed_text),
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(top = 24.dp, bottom = 8.dp)
-        )
-        Text(text = stringResource(id = R.string.nice_work), fontSize = 16.sp)
+fun QuadrantScreen() {
+    Row(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.weight(1f)) {
+            Column(modifier = Modifier
+                .weight(1f)
+                .background(Color.Red)
+                .fillMaxSize()) {
+
+            }
+            Column(modifier = Modifier
+                .weight(1f)
+                .background(Color.Yellow)
+                .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally) {
+
+                Text(text="test")
+                Text("test 2")
+            }
+        }
+        Column(modifier = Modifier.weight(1f)) {
+            Column(modifier = Modifier
+                .weight(1f)
+                .background(Color.Gray)
+                .fillMaxSize()) {
+
+            }
+            Column(modifier = Modifier
+                .weight(1f)
+                .background(Color.Green)
+                .fillMaxSize()) {
+
+            }
+        }
     }
 }
 
-@Preview(showBackground = true,
-    showSystemUi = true)
+@Preview
 @Composable
-fun TaskManagerScreenPreview() {
+fun QuadrantScreenPreview() {
     MyApplicationxTheme {
-        TaskManagerScreen()
+        QuadrantScreen()
     }
 }
